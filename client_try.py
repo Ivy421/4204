@@ -11,7 +11,7 @@ packet_size = 1024
 # Create a UDP socket
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-
+        
 def client():
     start_time = time.time()
     total_data_sent = 0
@@ -24,6 +24,9 @@ def client():
             print(f"Sent: {data}")
             total_data_sent += len(data)
             #time.sleep(0.1)
+    
+    client_socket.sendto("END".encode(), server_address)
+    client_socket.close()
 
     end_time = time.time()
     transfer_time = end_time - start_time
@@ -33,4 +36,5 @@ def client():
 
 if __name__ == '__main__':
     client()
+
 
